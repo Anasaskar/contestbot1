@@ -96,7 +96,7 @@ module.exports = Counter;
 	
 client.on("ready", () => {
   console.log(`client login ${client.user.username}`)
-  client.user.setPresence ({ activities: [ { name: `${prefix}help`, type: ActivityType.Playing }], status: 'discord.gg/vo1', });
+  client.user.setPresence ({ activities: [ { name: `${prefix}help`, type: ActivityType.Playing }], status: '', });
 
 })
 

@@ -107,14 +107,11 @@ async function resetGlobalCounter() {
 
 resetGlobalCounter();
 client.on("messageCreate", async (message) => {
-	if (!message.guild.me.permissionsIn(message.channel).has('SEND_MESSAGES')) {
-      // Send a direct message to the user
-      message.author.send("I don't have permission to send messages in that channel. Please make sure I have the necessary permissions.");
-    } else {
+
   if (message.content.startsWith(`<@${client.user.id}>`)) {
     message.reply(`**اهلا انا بوت <@${client.user.id}> \n انا هنا لمساعدتك علي انشاء مسابقه الصور الخاص بك \n لمزيد من المعلومات حول كيفيه استخدامي يرجي استخدام امر !help**`)
   }
-}
+
 });
 
 

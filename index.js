@@ -96,7 +96,7 @@ module.exports = Counter;
 	
 client.on("ready", () => {
   console.log(`client login ${client.user.username}`)
-  client.user.setPresence ({ activities: [ { name: `${prefix}help`, type: ActivityType.Playing }], status: '', });
+  client.user.setPresence ({ activities: [ { name: `${prefix}help`, type: ActivityType.Playing }], status: 'discord.gg/vo1', });
 
 })
 
@@ -108,18 +108,19 @@ async function resetGlobalCounter() {
 resetGlobalCounter();
 client.on("messageCreate", async (message) => {
 	if (!message.guild.me.hasPermission('SEND_MESSAGES')) {
-      message.author.send("I don't have permission to send messages in this channel.");
+      message.author.send("ليس لدي صلاحيه ارسال الرساله في هذه القناه تاكد من امتلاكي الرول المناسب لفعل هذا او قم ب اخبار مسؤليين السيرفر");
     } else {
-		
   if (message.content.startsWith(`<@${client.user.id}>`)) {
     message.reply(`**اهلا انا بوت <@${client.user.id}> \n انا هنا لمساعدتك علي انشاء مسابقه الصور الخاص بك \n لمزيد من المعلومات حول كيفيه استخدامي يرجي استخدام امر !help**`)
   }
 });
 
 
+
+
 client.on('messageCreate', async (message) => {
 	if (!message.guild.me.hasPermission('SEND_MESSAGES')) {
-      message.author.send("I don't have permission to send messages in this channel.");
+      message.author.send("ليس لدي صلاحيه ارسال الرساله في هذه القناه تاكد من امتلاكي الرول المناسب لفعل هذا او قم ب اخبار مسؤليين السيرفر");
     } else {
 		
   if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -199,7 +200,7 @@ client.on("interactionCreate" , interaction => {
 if (!message.member?.permissions.has('ADMINISTRATOR')) {
     return message.reply('هذا الأمر مخصص للمشرفين فقط.');
   }
-	    
+    
     var row1 = new ActionRowBuilder()
 .setComponents(
 new ButtonBuilder()

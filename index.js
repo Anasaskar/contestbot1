@@ -107,23 +107,17 @@ async function resetGlobalCounter() {
 
 resetGlobalCounter();
 client.on("messageCreate", async (message) => {
-	if (!message.guild.me.hasPermission('SEND_MESSAGES')) {
-      message.author.send("ليس لدي صلاحيه ارسال الرساله في هذه القناه تاكد من امتلاكي الرول المناسب لفعل هذا او قم ب اخبار مسؤليين السيرفر");
-    } else {
+	
   if (message.content.startsWith(`<@${client.user.id}>`)) {
     message.reply(`**اهلا انا بوت <@${client.user.id}> \n انا هنا لمساعدتك علي انشاء مسابقه الصور الخاص بك \n لمزيد من المعلومات حول كيفيه استخدامي يرجي استخدام امر !help**`)
   }
-	}
 });
 
 
 
 
 client.on('messageCreate', async (message) => {
-	if (!message.guild.me.hasPermission('SEND_MESSAGES')) {
-      message.author.send("ليس لدي صلاحيه ارسال الرساله في هذه القناه تاكد من امتلاكي الرول المناسب لفعل هذا او قم ب اخبار مسؤليين السيرفر");
-    } else {
-		
+			
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
@@ -502,7 +496,6 @@ console.log(err)
         message.reply({content:`${err.message}`})
       }
     }
-	}
   })
  
 

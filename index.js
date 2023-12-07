@@ -116,6 +116,49 @@ client.on("messageCreate", async (message) => {
 
 
 
+client.on('guildCreate', (guild) => {
+  const channelId = '1098098833168289802';
+  const channel = guild.channels.cache.get(channelId);
+
+  if (channel) {
+    const embed = new Discord.MessageEmbed()
+      .setTitle('Bot Joined Server')
+      .setDescription(`Thank you for adding me to ${guild.name}!`)
+      .setColor('#0099ff');
+
+    channel.send({ embeds: [embed] }).then((message) => {
+      const inviteButton = new Discord.MessageButton()
+        .setStyle('LINK')
+        .setLabel('Join Server')
+        .setURL(`https://discord.gg/${guild.invites.create(client.user.id).code}`);
+
+      const leaveButton = new Discord.MessageButton()
+        .setStyle('DANGER')
+        .setLabel('Leave Server')
+        .setCustomId('leave');
+
+      const row = new Discord.MessageActionRow().addComponents([inviteButton, leaveButton]);
+
+      message.edit({ embeds: [embed], components: [row] });
+
+      const filter = (interaction) =>
+        interaction.customId === 'leave' && interaction.user.id === guild.ownerId;
+
+      const collector = message.createMessageComponentCollector({ filter, time: 60000 });
+
+      collector.on('collect', () => {
+        guild.leave();
+        channel.send('Leaving the server as requested by the owner.');
+        collector.stop();
+      });
+
+      collector.on('end', () => {
+        message.components.forEach((comp) => comp.components.forEach((button) => button.setDisabled(true)));
+        message.edit({ components: message.components });
+      });
+    });
+  }
+});
 
 client.on('messageCreate', async (message) => {
 			

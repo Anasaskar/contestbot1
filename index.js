@@ -107,7 +107,6 @@ async function resetGlobalCounter() {
 
 resetGlobalCounter();
 client.on("messageCreate", async (message) => {
-if(!message.channel.members.me.permissions.has("SendMessages")) return message.author.send({content:"معيش صالحيات يعم"});
 	
   if (message.content.startsWith(`<@${client.user.id}>`)) {
     message.reply(`**اهلا انا بوت <@${client.user.id}> \n انا هنا لمساعدتك علي انشاء مسابقه الصور الخاص بك \n لمزيد من المعلومات حول كيفيه استخدامي يرجي استخدام امر !help**`)

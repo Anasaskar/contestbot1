@@ -107,41 +107,21 @@ async function resetGlobalCounter() {
 
 resetGlobalCounter();
 client.on("messageCreate", async (message) => {
+	if (!message.guild.me.hasPermission('SEND_MESSAGES')) {
+      message.author.send("I don't have permission to send messages in this channel.");
+    } else {
+		
   if (message.content.startsWith(`<@${client.user.id}>`)) {
     message.reply(`**اهلا انا بوت <@${client.user.id}> \n انا هنا لمساعدتك علي انشاء مسابقه الصور الخاص بك \n لمزيد من المعلومات حول كيفيه استخدامي يرجي استخدام امر !help**`)
   }
 });
-const line = process.env.line
-client.on("messageCreate", async (message) => {
-	
-  if (message.content.startsWith(line)) {
-	  message.channel.send(`https://cdn.discordapp.com/attachments/1095551166013780028/1115459012746547330/mar-line.png`)
-    message.delete()
-	  }
-})
-
-client.on('messageCreate', (message) => {
-  // Check if the message author is the bot and the message starts with the command
-  if (message.author.bot || !message.content.startsWith('!avatar')) return;
-
-  // Extract the avatar URL from the message content
-  const args = message.content.split(' ');
-  const newAvatarUrl = args[1];
-
-  // Set the bot's avatar
-  client.user.setAvatar(newAvatarUrl)
-    .then(() => {
-      console.log('Avatar changed successfully.');
-      message.reply('Bot avatar has been updated.');
-    })
-    .catch((error) => {
-      console.error('Error changing avatar:', error);
-      message.reply('An error occurred while changing the bot avatar.');
-    });
-});
 
 
 client.on('messageCreate', async (message) => {
+	if (!message.guild.me.hasPermission('SEND_MESSAGES')) {
+      message.author.send("I don't have permission to send messages in this channel.");
+    } else {
+		
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
@@ -219,7 +199,7 @@ client.on("interactionCreate" , interaction => {
 if (!message.member?.permissions.has('ADMINISTRATOR')) {
     return message.reply('هذا الأمر مخصص للمشرفين فقط.');
   }
-    
+	    
     var row1 = new ActionRowBuilder()
 .setComponents(
 new ButtonBuilder()

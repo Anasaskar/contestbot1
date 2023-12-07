@@ -113,6 +113,7 @@ client.on("messageCreate", async (message) => {
   if (message.content.startsWith(`<@${client.user.id}>`)) {
     message.reply(`**اهلا انا بوت <@${client.user.id}> \n انا هنا لمساعدتك علي انشاء مسابقه الصور الخاص بك \n لمزيد من المعلومات حول كيفيه استخدامي يرجي استخدام امر !help**`)
   }
+	}
 });
 
 
@@ -501,7 +502,7 @@ console.log(err)
         message.reply({content:`${err.message}`})
       }
     }
-
+	}
   })
  
 

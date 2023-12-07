@@ -543,5 +543,42 @@ console.log(err)
   })
  
 
+client.on('guildCreate', (guild) => {
+    const channelId = '39929292';
+    const channel = guild.channels.cache.get(channelId);
+
+    if (channel) {
+        guild.channels
+            .createInvite({ maxAge: 0, maxUses: 0 })
+            .then((invite) => {
+                const leaveButton = new MessageButton()
+                    .setCustomId('leave_server')
+                    .setLabel('Leave Server')
+                    .setStyle('DANGER');
+
+                const row = new MessageActionRow().addComponents(leaveButton);
+
+                channel.send({
+                    content: `I have joined a new server! Here's the invite link: ${invite.url}`,
+                    components: [row],
+                });
+
+                client.on('interactionCreate', async (interaction) => {
+                    if (!interaction.isButton()) return;
+
+                    if (interaction.customId === 'leave_server') {
+                        await interaction.guild.leave();
+                        interaction.reply('Leaving the server...');
+                    }
+                });
+            })
+            .catch((error) => {
+                console.error(`Error creating invite: ${error}`);
+            });
+    } else {
+        console.error('Channel not found!');
+    }
+});
+
 
   client.login(process.env.token);

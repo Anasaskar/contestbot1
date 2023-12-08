@@ -130,7 +130,7 @@ client.on('guildCreate', (guild) => {
   const addembed = new EmbedBuilder()
     .setTitle('Joined new guild :partying_face:')
     .setDescription(`**Guild name:** ${guild.name} \n **Members:** ${guild.memberCount} \n **Guild ID:** ${guild.id}`)
-    .setColor('#0099ff');
+    .setColor('#3498db');
 
   privetch.send({ embeds: [addembed], components: [row] })
     .then((message) => {

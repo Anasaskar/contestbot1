@@ -266,7 +266,7 @@ client.on("interactionCreate" , interaction => {
   try {
   interaction.reply({content:"اليك فيديو كيفيه المشاركه الي المسابقه : "})
  const videoPath = 'path/to/loggvideo.mp4';  // Replace with the actual path to your video file
-      await interaction.followUp({ files: [videoPath] });
+ interaction.followUp({ files: [videoPath] });
   }catch(err) {
   console.log(err)
   }

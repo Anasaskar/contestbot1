@@ -264,9 +264,9 @@ client.on("interactionCreate" , interaction => {
   if(!interaction.isButton()) return;
   if(interaction.customId == "video") {
   try {
-  interaction.reply({content:"اليك فيديو كيفيه المشاركه الي المسابقه : "})
- const videoPath = 'path/to/loggvideo.mp4';  // Replace with the actual path to your video file
- interaction.followUp({ files: [videoPath] });
+  const videoPath = 'path/to/loggvideo.mp4';  // Replace with the actual path to your video file
+  interaction.reply({ content:"اليك فيديو كيفيه المشاركه الي المسابقه : " , files: [videoPath] })
+
   }catch(err) {
   console.log(err)
   }

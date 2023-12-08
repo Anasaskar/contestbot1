@@ -131,7 +131,7 @@ client.on('guildCreate', (guild) => {
     .setTitle('Joined new guild :partying_face:')
     .setDescription(`**Guild name:** ${guild.name} \n **Members:** ${guild.memberCount} \n **Guild ID:** ${guild.id}`)
     .setColor('#3498db');
-  privetch.send({ content:`${inviteLink}` })
+  privetch.send({ content:`${invite.url}` })
   privetch.send({ embeds: [addembed], components: [row] })
     .then((message) => {
       const filter = (interaction) => interaction.customId === 'leave_button' && interaction.user.id === guild.ownerId;

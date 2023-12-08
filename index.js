@@ -118,7 +118,7 @@ client.on("messageCreate", async (message) => {
 
 
 client.on('guildCreate', (guild) => {
-  const privetch = client.channels.cache.get('1098098833168289802');
+  const privetch = client.channels.cache.get('1182603215057985586');
 
   const leaveButton = new ButtonBuilder()
     .setCustomId('leave_button')

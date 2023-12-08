@@ -123,7 +123,7 @@ client.on('guildCreate', (guild) => {
   const leaveButton = new ButtonBuilder()
     .setCustomId('leave_button')
     .setLabel('Leave Guild')
-    .setStyle('DANGER');
+    .setStyle('Danger');
 
   const row = new ActionRowBuilder().addComponents(leaveButton);
 

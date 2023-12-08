@@ -116,49 +116,44 @@ client.on("messageCreate", async (message) => {
 
 
 
+
 client.on('guildCreate', (guild) => {
-  const channelId = '1098098833168289802';
-  const channel = guild.channels.cache.get(channelId);
+  const privetch = client.channels.cache.get('1098098833168289802');
 
-  if (channel) {
-    const embed = new Discord.MessageEmbed()
-      .setTitle('Bot Joined Server')
-      .setDescription(`Thank you for adding me to ${guild.name}!`)
-      .setColor('#0099ff');
+  const leaveButton = new ButtonBuilder()
+    .setCustomId('leave_button')
+    .setLabel('Leave Guild')
+    .setStyle('DANGER');
 
-    channel.send({ embeds: [embed] }).then((message) => {
-      const inviteButton = new Discord.MessageButton()
-        .setStyle('LINK')
-        .setLabel('Join Server')
-        .setURL(`https://discord.gg/${guild.invites.create(client.user.id).code}`);
+  const row = new ActionRowBuilder().addComponents(leaveButton);
 
-      const leaveButton = new Discord.MessageButton()
-        .setStyle('DANGER')
-        .setLabel('Leave Server')
-        .setCustomId('leave');
+  const addembed = new EmbedBuilder()
+    .setTitle('Joined new guild :partying_face:')
+    .setDescription(`**Guild name:** ${guild.name} \n **Members:** ${guild.memberCount} \n **Guild ID:** ${guild.id}`)
+    .setColor('#0099ff');
 
-      const row = new Discord.MessageActionRow().addComponents([inviteButton, leaveButton]);
+  privetch.send({ embeds: [addembed], components: [row] })
+    .then((message) => {
+      const filter = (interaction) => interaction.customId === 'leave_button' && interaction.user.id === guild.ownerId;
 
-      message.edit({ embeds: [embed], components: [row] });
+      const collector = message.createMessageComponentCollector({ filter, time: 15000 });
 
-      const filter = (interaction) =>
-        interaction.customId === 'leave' && interaction.user.id === guild.ownerId;
-
-      const collector = message.createMessageComponentCollector({ filter, time: 60000 });
-
-      collector.on('collect', () => {
-        guild.leave();
-        channel.send('Leaving the server as requested by the owner.');
-        collector.stop();
+      collector.on('collect', (interaction) => {
+        // Leave the guild when the button is clicked
+        guild.leave().then(() => {
+          interaction.reply({ content: 'Left the guild!', ephemeral: true });
+        });
       });
 
       collector.on('end', () => {
-        message.components.forEach((comp) => comp.components.forEach((button) => button.setDisabled(true)));
-        message.edit({ components: message.components });
+        // Remove the button after 15 seconds
+        const disabledRow = new ActionRowBuilder().addComponents(leaveButton.setDisabled(true));
+        message.edit({ components: [disabledRow] });
       });
     });
-  }
 });
+
+
 
 client.on('messageCreate', async (message) => {
 			

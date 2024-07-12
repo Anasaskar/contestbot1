@@ -116,7 +116,7 @@ client.on("messageCreate", async (message) => {
 
 
 
-
+/*
 client.on('guildCreate', (guild) => {
   const privetch = client.channels.cache.get('1182603215057985586');
 
@@ -152,7 +152,7 @@ client.on('guildCreate', (guild) => {
     });
 });
 
-
+*/
 
 client.on('messageCreate', async (message) => {
 			

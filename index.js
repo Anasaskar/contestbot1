@@ -494,7 +494,12 @@ console.log(err)
     }
 
 if(typeof imageUrl  == "string" && !imageUrl.startsWith("https://") )
-return message.reply({content:"برجاء وضع رابط الصوره وليس كلمه او اختصار."})
+return message.reply({content:"برجاء وضع رابط الصوره وليس كلمه او اختصار."}).then(replyMessage => { 
+        setTimeout(() => {
+          message.delete(); 
+          replyMessage.delete(); 
+        }, 10000); 
+      }).catch(err => console.error(err));
           
         const counter = await Counter.findOneAndUpdate(
           { name: guildId },

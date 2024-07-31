@@ -494,7 +494,7 @@ console.log(err)
     }
 
 if(typeof imageUrl  == "string" && !imageUrl.startsWith("https://") )
-return message.reply({content:"حط رابط يبن المتناكة"})
+return message.reply({content:"برجاء وضع رابط الصوره وليس كلمه او اختصار."})
           
         const counter = await Counter.findOneAndUpdate(
           { name: guildId },

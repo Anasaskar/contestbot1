@@ -428,10 +428,10 @@ client.on("interactionCreate" , interaction => {
     }
 
 
-   if (command === 'join') {
+if (command === 'join') {
 
       const user = await User.findOne({ serverId:message.guild.id,userId: message.author.id });
-	   if(user) return message.reply({content:"انت مشارك بالفعل"});
+       if(user) return message.reply({content:"انت مشارك بالفعل"});
             if (!user) {
    
         const guildData = await Server.findOne({ serverId: message.guild.id });
@@ -492,6 +492,9 @@ console.log(err)
       }).catch(err => console.error(err));
      
     }
+
+if(typeof imageUrl  == "string" && !imageUrl.startsWith("https://") )
+return message.reply({content:"حط رابط يبن المتناكة"})
           
         const counter = await Counter.findOneAndUpdate(
           { name: guildId },
@@ -515,7 +518,7 @@ console.log(err)
             replyMessage.delete(); 
           }, 10000); 
         }).catch(err => console.error(err));
-		    
+            
       } else {
         message.reply(`**لقد قمت ب المشاركه في هذه المسابقه من قبل يرجي تنفيذ شروطها او انتظار مسابقه جديده يمكنك فحص نفسك من هنا \n ${channel2}**`).then(replyMessage => {  
           setTimeout(() => {
@@ -525,7 +528,7 @@ console.log(err)
         }).catch(err => console.error(err));
       }
     }
-
+ 
      if (command === 'reset') {
       try{
       const guildId = message.guild.id;
